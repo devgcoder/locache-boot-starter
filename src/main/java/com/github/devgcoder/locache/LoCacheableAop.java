@@ -49,7 +49,7 @@ public class LoCacheableAop {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
-    @Around(value = "@annotation(com.org.platform.support.conponents.cache.localcache.LoCacheable)")
+    @Around(value = "@annotation(LoCacheable)")
     public Object loCache(ProceedingJoinPoint joinPoint) throws Throwable {
         if (null == LoCacheableConfig.locacheNodeKey || LoCacheableConfig.locacheNodeKey.equals("")) {
             return joinPoint.proceed();
@@ -122,7 +122,7 @@ public class LoCacheableAop {
         }
     }
 
-    @Before(value = "@annotation(com.org.platform.support.conponents.cache.localcache.LoCacheEvict)")
+    @Before(value = "@annotation(LoCacheEvict)")
     public void evictLoCache(JoinPoint joinPoint) throws Throwable {
         boolean isMapper = false;
         Class clazz = joinPoint.getTarget().getClass();
